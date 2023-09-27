@@ -1,5 +1,286 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* { /* Formatação do arquivo CSS */
+    font-family: 'Poppins';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-padding-top: 2rem;   /* Cria um espaço acima quando o scoll é usado */
+    scroll-behavior: smooth;    /* Adicona uma transição "suave/smooth" quando o scrool é utilizado */
+    list-style: none;   /* Retira os estilos das listas */
+    text-decoration: none;  /* Retira as decorações que aparecem nos links "a" */
+}
+:root { /* Variáveis de cor */
+    --main-color: #fd4646;
+    --text-color: #171427;
+    --bg-color: #fff;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    background: #3d3d3d;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1068px;
+    margin: auto;
+    width: 100%;
+}
+
+/* Seção */
+
+section {
+    padding: 4rem 0 3rem;
+}
+
+/* Header */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-color);
+    box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);  /* 1° Valor = Matiz | 2° Valor = Saturação | 3° Valor = Luminosidade/Brilho */
+    z-index: 100;
+}
+.nav {
+    display: flex;
+    align-items: center;    /* Alinhamento vertical do elemento em relação ao espaço */
+    justify-content: space-between; /* Espaço Horizontal "Entre Eles" */
+    padding: 20px 0;    /* Define uma distância interna entre o elemento e sua borda ( | 1° Valor = Vertical / 2° Valor = Horizontal / 3° Valor = Inferior / 4° Valor = Esquerda | ) */
+}
+
+/* "Logo" */
+
+.logo {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 400;   /* "Peso/Grossura" da fonte */
+}
+
+/* "Carrinho" */
+
+#cart-icon {
+    font-size: 1.8rem;
+    cursor: pointer;    /* Aparece a "mãozinha" do mouse sobre o elemento */
+}
+
+/* "Título da seção" */
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center; /* Alinhar texto HORIZONTALMENTE ao CENTRO */
+    margin-bottom: 1.5rem;
+}
+
+/* "Loja" e "Conteúdo da Loja" */
+
+.shop {
+    margin-top: 2rem;   /* "Margin do topo" */
+}
+.shop-content {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit,minmax(400px, auto)); */
+    grid-template-columns: repeat(auto-fit,minmax(220px, auto));    /* Todas as colunas tem largura mínima de 220px */
+    gap: 1.5rem;    /* Espaçamento entre as colunas */
+}
+
+/* Produtos */
+
+.product-box {
+    position: relative;
+    padding: 10px;
+}
+.product-box:hover {    /* Quando o mouse estiver sobre */
+    padding: 0;
+    border: 1px solid var(--bg-color);
+    transition: 0.4s;
+}
+
+/* Imagem | Título | Preço dos Produtos */
+
+.product-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.price {
+    font-weight: 500;
+}
+
+/* Cart-Carrinho */
+
+.add-cart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 10px;
+    cursor: pointer;
+}
+.add-cart:hover {   /* Cor ao passar o mouse sobre o "Carrinho" */
+    background: hsl(249, 32%, 17%);
+    transition: 0.4s;
+}
+
+/* Menu do Carrinho */
+
+.cart { /* Estrutura do Menu */
+    position: fixed;
+    top: 0;
+    right: -100%;   /* Quando ele não estiver ativo(active) o right será -100%, ou seja, estará totalmente "escondido" */
+    width: 360px;
+    min-height: 100vh;
+    padding: 20px;
+    background: var(--bg-color);
+    box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+    transition: 0.3s;
+}
+.cart.active {  /* Quando o menu estiver ativo ele vai ter right 0, ou seja, vai aparecer */
+    right: 0;
+}
+
+.cart-title {   /* Alinhando o Título do Menu ao CENTRO */
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.cart-box { /* Box do carrinho = Imagem/Preço/Input/Remove etc.. */
+    display: grid;
+    grid-template-columns: 32% 50% 18%; /* Deixou o grid no modo de COLUNAS e determinou 3 colunas. | Uma para a imagem/total |  | Outra para a quantidade e valor do produto | | Outra para a "lixeira" |  */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cart-img { /* Imagem contida no carrinho */
+    width: 100px;
+    height: 100px;
+    object-fit: contain;    /* A propriedade "contain" vai fazer com que a imagem se "molde" ao tamanho do container */
+    padding: 10px;
+}
+.cart-product-title {   /* Título do produto que está no carrinho */
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.cart-price {   /* Preço do produto */
+    font-weight: 500;
+}
+.cart-quantity {    /* Input de quantidade */
+    border: 1px solid var(--text-color);
+    outline-color: var(--main-color); /* Cor das bordas do input (ao clicar) */
+    width: 2.4rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.cart-remove {  /* Personalização da lixeira */
+    font-size: 24px;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+/* Estilização do total = título/preço */
+
+.total {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--text-color);
+}
+.total-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.total-price {
+    margin-left: 0.5rem;
+}
+
+/* Estilização do botão de comprar */
+
+.btn-buy {
+    display: flex;
+    margin: 1.5rem auto 0 auto; /* 1° valor = Vertical(encima) | 2° valor = Esquerda(lado) | 3° = Vertical(embaixo) | 4° valor = Direita(lado) */
+    padding: 12px 20px;
+    border: none;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-buy:hover {
+    background: var(--text-color);
+}
+
+/* Estilização de fechar o carrinho */
+
+#close-cart {
+    position: absolute; /* Faz o elemento sair da "hierarquia/elemento pai" e assim é possível posicionar em qualquer lugar da página */
+    top: 1rem;
+    right: 0.8rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.detail-box {
+    display: grid;
+    row-gap: 0.5rem;    /* Espaçamento entre as linhas */
+}
+
+/* Beakpoints / Fazendo a Responsividade */
+
+@media (max-width:1080px){
+    .nav {
+        padding: 15px;
+    }
+    section {
+        padding: 3rem 0 2rem;
+    }
+    .container {
+        margin: 0 auto;
+        width: 90%;
+    }
+    .shop {
+        margin-top: 2rem !important;
+    }
+}
+
+@media (max-width:400px) {
+   .nav {
+    padding: 11px;
+   }
+   .logo {
+    font-size: 1rem;
+   }
+   .cart {
+    width: 320px;
+   }
+}
+
+@media (max-width:360px) {
+    .shop {
+        margin-top: 1rem !important;
+    }
+    .cart {
+        width: 280px;
+       }
 }
