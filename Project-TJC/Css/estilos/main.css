@@ -1,0 +1,39 @@
+main {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 1280px;
+    padding-top: 300px;
+
+}
+
+.main_info{
+    width: 100%;
+}
+.main_botao{
+    display: flex;
+    column-gap: 32px;
+    padding-top: 30px;
+}
+.main_botao a{
+    text-decoration: none;
+    color: white;
+
+}
+.main_botao button{
+    background: transparent;
+    border: 1px solid;
+    color: white;
+    padding: 20px 20px;
+    border-radius: 5px;
+}
+.main_botao a, button{
+
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
