@@ -49,6 +49,35 @@ usuario.addEventListener('keyup', () => {
   }
 })
 
+telefone.addEventListener('keyup', () => {
+  if(telefone.value.length <= 4){
+    labelTelefone.setAttribute('style', 'color: red')
+    labelTelefone.innerHTML = '*Insira no minimo 11 caracteres'
+    telefone.setAttribute('style', 'border-color: red')
+    validTelefone = false
+  } else {
+    labelTelefone.setAttribute('style', 'color: green')
+    labelTelefone.innerHTML = 'Telefone'
+    telefone.setAttribute('style', 'border-color: green')
+    validTelefone = true
+  }
+})
+
+email.addEventListener('keyup', () => {
+  if(email.value.length <= 4){
+    labelEmail.setAttribute('style', 'color: red')
+    labelEmail.innerHTML = ' *Insira um email valido'
+    email.setAttribute('style', 'border-color: red')
+    validEmail= false
+  } else {
+    labelEmail.setAttribute('style', 'color: green')
+    labelEmail.innerHTML = 'Usuário'
+    email.setAttribute('style', 'border-color: green')
+    validEmail = true
+  }
+})
+
+
 senha.addEventListener('keyup', () => {
   if(senha.value.length <= 5){
     labelSenha.setAttribute('style', 'color: red')
@@ -98,7 +127,7 @@ function cadastrar(){
     msgError.innerHTML = ''
     
     setTimeout(()=>{
-        window.location.href = 'http://127.0.0.1:5500/login.html'
+        window.location.href = 'http://127.0.0.1:5500/projeto%20dia%2004/teladelogin.html'
     }, 3000)
   
     
@@ -129,3 +158,20 @@ btnConfirm.addEventListener('click', ()=>{
     inputConfirmSenha.setAttribute('type', 'password')
   }
 })
+
+var cad2 =document.querySelector("#inputButton2")
+
+cad2.addEventListener("click", function(){
+    var paragrafo = document.querySelector("#sessionstorage");
+    var teste = JSON.parse(localStorage.getItem('userLogado'))
+    console.log(teste)
+
+    teste.map((item) =>{
+        console.log(item.Nome)
+        paragrafo.textContent += item.Nome + ' ';
+        paragrafo.textContent += item.Usuario + ' ';
+        paragrafo.textContent += item.Senha + ' ';
+
+    })
+})
+
