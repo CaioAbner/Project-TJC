@@ -2,13 +2,56 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+  <link rel="stylesheet" href="lista.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+  <div class="container">
+    <div class="header">
+      <span>Listagem de usuarios</span>
+      <button onclick="openModal()" id="new">Incluir</i></button> 
+    </div>
+    <div class="content">
+      <table border="1">
+        <thead>
+          <tr>
+            <div id="userLogado"></div> 
+             <th>Nome</th> 
+            <th>Usuario</th>
+            <th>Senha</th>
+            <th class="acao">Editar</th>
+            <th id="botaoApagar" class="acao">Excluir</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
 
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-container">
+      <div class="modal">
+        <form>
+          <label for="m-nome">Nome</label>
+          <input id="m-nome" type="text" required /> 
+  
+          <label for="m-usuario">Usuario</label>
+          <input id="m-usuario" type="text" required />
+  
+          <label for="m-senha">Senha</label>
+          <input id="m-senha" type="text" required />
+          <button id="btnSalvar">Salvar</button>
+        </form>
+      </div>
+    </div> 
+
+  </div>
+  <script src="lista.js"></script>
 </body>
 
 </html>
