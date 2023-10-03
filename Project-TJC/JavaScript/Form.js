@@ -10,6 +10,15 @@ let usuario = document.querySelector('#usuario')
 let labelUsuario = document.querySelector('#labelUsuario')
 let validUsuario = false
 
+
+let telefone = document.querySelector('#telefone')
+let labelTelefone= document.querySelector('#labelTelefone')
+let validTelefone= false 
+
+let email = document.querySelector('#email')
+let labelEmail= document.querySelector('#labelEmail')
+let validEmail = false
+
 let senha = document.querySelector('#senha')
 let labelSenha = document.querySelector('#labelSenha')
 let validSenha = false
