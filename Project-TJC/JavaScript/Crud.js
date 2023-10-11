@@ -1,101 +1,74 @@
-// selecionar e alocar os itens do localstorage:
-var usuario = localStorage.getItem('userLogado')
-var logado = localStorage.getItem('listaUser')
-logado = JSON.parse(logado)
-console.log(usuario)
 
-for(var i = 0; i < logado.length ; i++){
-    console.log(logado[i].nomeCad)
-    console.log(logado[i].userCad )
-    console.log(logado[i].senhaCad)
+var tbody  = document.getElementById('tbody')
+var listaUse = JSON.parse(localStorage.getItem('listaUser'));
+// tbody.deleteRow(1);
 
-   document.getElementById('tbody').innerHTML += `<tr><td>${logado[i].nomeCad}</td><td>${logado[i].userCad}</td><td>${logado[i].senhaCad}</td></tr>`
-}
-// selecionar o elemento que ira aparecer:
-document.getElementById('userLogado').textContent = "";
+tbody.innerHTML = '';
 
-// apagar o user
-let itens
-let id
+listaUse.forEach((item, index) => { //criando uma linha pra cada pessoa 
 
-function openModal(edit = false, index = 0) {
-  modal.classList.add('active')
+    var tr = document.createElement('tr');
 
-  modal.onclick = e => {
-    if (e.target.className.indexOf('modal-container') !== -1) {
-      modal.classList.remove('active')
-    }
-  }
+    
+    tr.innerHTML = `<td>${item.nomeCad}</td>
+                    <td>${item.userCad}</td>
+                        <td>${item.senhaCad}</td>
+                        
+                        <td>
+                        <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+                        <td class="acao">
+                        <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
+                    </td>`;
 
-  if (edit) {
-    sNome.value = itens[index].nome
-    sUsuario.value = itens[index].funcao
-    sSenha.value = itens[index].salario
-    id = index
-  } else {
-    sNome.value = ''
-    sUsuario.value = ''
-    sSenha.value = ''
-  }
-  
-}
+    tbody.appendChild(tr); //appendChild pra adicionar a linha
+});
 
-function editItem(index) {
-
-  openModal(true, index)
-}
-
+//remover um usuário
 function deleteItem(index) {
-  itens.splice(index, 1)
-  setItensBD()
-  loadItens()
+    var tr = document.createElement('tr');
+    var confirmar = confirm('Tem certeza de que deseja remover este usuário?');
+
+    if (confirmar) {
+        listaUse.splice(index, 3); // remove da lista
+        localStorage.setItem('listaUser', JSON.stringify(listaUse)); // muda o localStorage
+        // location.reload(); // recarrega
+        tbody.deleteRow(index);
+        localStorage.removeItem(listaUse[index])
+}
 }
 
-function insertItem(item, index) {
-  let tr = document.createElement('tr')
-
-  tr.innerHTML = `
-    <td>${item.nome}</td>
-    <td>${item.usuario}</td>
-    <td>R$ ${item.sSenha}</td>
-    <td class="acao">
-      <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
-    </td>
-    <td class="acao">
-      <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
-    </td>
-  `
-  tbody.appendChild(tr)
+// editar usuario
+// Array de exemplo
+const meuArray = localStorage.getItem('listaUser')
+const arrayDisplay = document.getElementById("userLogado");
+const editButton = document.getElementById("editButton");
+// Função para atualizar a exibição do array
+function atualizarArray() {
+    arrayDisplay.textContent = meuArray.join(", "); // Exibe o array como uma string separada por vírgulas
 }
 
-btnSalvar.onclick = e => {
-  
-  if (sNome.value == '' || sUsuario.value == '' || sSenha.value == '') {
-    return
-  }
+// Função que será chamada quando o botão for clicado
+function editItem() {
+    const indice = prompt("Digite o índice do elemento a ser editado:");
+    const novoValor = prompt("Digite o novo valor:");
 
-  e.preventDefault();
-
-  if (id !== undefined) {
-    itens[id].nome = sNome.value
-    itens[id].usuario = sUsuario.value
-    itens[id].senha = sSenha.value
-  } else {
-    itens.push({'nome': sNome.value, 'usuario': sUsuario.value, 'senha': sSenha.value})
-  }
-
-  setItensBD()
-
-  modal.classList.remove('active')
-  loadItens()
-  id = undefined
+    if (indice !== null && novoValor !== (",")) {
+        const indiceNum = parseInt(indice);
+        if (!isNaN(indiceNum) && indiceNum >= 0 && indiceNum < meuArray.length) {
+            const array = JSON.parse(meuArray)
+            array[indiceNum].senhaCad = novoValor;
+            var a = array
+            localStorage.removeItem('listaUser')
+            localStorage.setItem('listaUser', JSON.stringify(array))
+            atualizarArray();
+        } else {
+            alert("Índice inválido. Certifique-se de fornecer um índice válido.");
+        }
+    }
 }
 
-function loadItens() {
-  itens = getItensBD()
-  tbody.innerHTML = ''
-  itens.forEach((item, index) => {
-    insertItem(item, index)
-  })
+// Adicionar um ouvinte de evento ao botão para chamar a função de edição
+editButton.addEventListener("click", editItem);
 
-}
+// Inicialmente, exiba o array
+atualizarArray();
