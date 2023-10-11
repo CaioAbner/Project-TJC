@@ -37,3 +37,6 @@ main {
     text-align: center;
     letter-spacing: 0.3px;
 }
+.main_botao button, a:hover{
+    color: rgb(154, 18, 18);
+}
