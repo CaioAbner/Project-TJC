@@ -45,21 +45,30 @@
         </div>
     </main>
     <h1 class="model">Cadastre seus Modelos</h1>
-        <!-- Formulário para adicionar um novo produto -->
-    <form id="product-form">
-        <label for="product-name">Nome do Produto:</label>
-        <input type="text" id="product-name" required>
-        <br>
-        <label for="product-image">Imagem do Produto:</label>
-        <input type="file" id="product-image" accept="image/*" required>
-        <br>
-        <button type="submit">Adicionar Produto</button>
-    </form>
+    <div class="form-container">
+        <div class="cdst">
+        <button id="cdst" onclick="toggle('product-form')">Cadastre aqui !</button>
+        <!-- <a href="" onclick="esconde('product-form')"><i class='bx bx-left-arrow-alt'></i></a> -->
+        </div>
+   <!-- Formulário para adicionar um novo produto -->
+   <form id="product-form">
+    <label for="product-name">Nome do Produto:</label>
+    <input type="text" id="product-name" required>
+    <br>
+    <label for="product-price">Preço do Produto:</label>
+    <input type="number" id="product-price" step="0.01" required>
+    <br>
+    <label for="product-image">Imagem do Produto:</label>
+    <input type="file" id="product-image" accept="image/*" required>
+    <br>
+    <button type="submit">Adicionar Produto</button>
+</form>
 
-    <!-- Div para exibir os cards de produtos -->
-    <div id="product-cards">
-        <!-- Os cards de produtos serão adicionados aqui -->
-    </div>
+<!-- Div para exibir os cards de produtos -->
+<div id="product-cards">
+    <!-- Os cards de produtos serão adicionados aqui -->
+</div>
+    <!-- </div> -->
     <div class="rodape">
         <h4><i class='bx bx-phone' ></i> Telefone: (85) 91234-5678 </h4>
            <p> <i class='bx bx-envelope' ></i> Email: essesiteehgolpe@gmail.com </p>
@@ -67,7 +76,7 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" src="https://unpkg.com/aos@2.3.1/dist/aos.js">
         AOS.init();
     </script>
-    <script src="/JavaScript/Preview.js"></script>
+    <script src="/JavaScript/Modelos.js"></script>
 </body>
 
 </html>
