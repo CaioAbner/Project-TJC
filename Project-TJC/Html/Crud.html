@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -13,23 +13,22 @@
 <body>
   <div class="container">
     <div class="header">
-      <span>Listagem de usuarios</span>
-      <button onclick="openModal()" id="new">Incluir</i></button> 
+      <span>Listagem de usuarios.</span>
+      <button onclick="openModal()" id="new">Incluir</i></button>
     </div>
-    <div class="content">
-      <table border="1">
+
+    <div class="divTable">
+      <table>
         <thead>
           <tr>
-            <div id="userLogado"></div> 
-             <th>Nome</th> 
+            <th>Nome</th>
             <th>Usuario</th>
             <th>Senha</th>
             <th class="acao">Editar</th>
-            <th id="botaoApagar" class="acao">Excluir</th>
+            <th class="acao">Excluir</th>
           </tr>
         </thead>
-        <tbody id="tbody">
-
+        <tbody>
         </tbody>
       </table>
     </div>
@@ -38,17 +37,17 @@
       <div class="modal">
         <form>
           <label for="m-nome">Nome</label>
-          <input id="m-nome" type="text" required /> 
+          <input id="m-nome" type="text" required />
   
           <label for="m-usuario">Usuario</label>
           <input id="m-usuario" type="text" required />
   
           <label for="m-senha">Senha</label>
-          <input id="m-senha" type="text" required />
+          <input id="m-senha" type="number" required />
           <button id="btnSalvar">Salvar</button>
         </form>
       </div>
-    </div> 
+    </div>
 
   </div>
   <script src="lista.js"></script>
